@@ -29,7 +29,6 @@
 ```
 share-event-bus
     |- boot-starter
-        |- API
         |- event-bus-client
     |- event-bus-server
         |- adapter
