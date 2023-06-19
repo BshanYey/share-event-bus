@@ -35,7 +35,7 @@ share-event-bus
         |- adapter
         |- application
         |- domain
-    |- infrastructure
+        |- infrastructure
 ```
 # 开发计划
 
