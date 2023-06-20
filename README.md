@@ -19,7 +19,7 @@
 
 
 ## 服务端
-使用DDD的思想开发（待定），主要具有如下功能：
+主要具有如下功能：
 - 生产节点（ProductionNode）注册
 - 生产线（ProductionLine）编排
 - 生产节点（ProductionNode）动态调度
