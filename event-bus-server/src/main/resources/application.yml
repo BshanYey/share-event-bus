@@ -1,5 +1,18 @@
 server:
   port: 8080
 
+
 mq:
   address: 192.168.243.70:9876
+
+
+event:
+  bus:
+    port: 8001
+
+logging:
+  config: classpath:logback/logback-spring.xml
+
+spring:
+  profiles:
+    active: dev

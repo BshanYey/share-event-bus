@@ -43,15 +43,60 @@
             <artifactId>netty-all</artifactId>
         </dependency>
 
+        <!-- protobuf 相关依赖start -->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>2.0.33</version>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java-util</artifactId>
+        </dependency>
+        <!-- protobuf 相关依赖end -->
+
+
     </dependencies>
 
     <build>
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>1.6.2</version>
+            </extension>
+        </extensions>
         <plugins>
+            <plugin>
+                <groupId>org.xolstice.maven.plugins</groupId>
+                <artifactId>protobuf-maven-plugin</artifactId>
+                <version>0.6.1</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <!-- 工具版本 -->
+                    <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
+
+                    <!--protobuf 默认路径-->
+                    <protoSourceRoot>${project.basedir}/src/main/proto</protoSourceRoot>
+                    <!--默认值，proto目标java文件路径-->
+                    <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+                    <!--设置是否在生成java文件之前清空outputDirectory的文件，默认值为true，设置为false时也会覆盖同名文件-->
+                    <clearOutputDirectory>false</clearOutputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <!--在执行mvn compile的时候会执行以下操作-->
+                        <phase>compile</phase>
+                        <goals>
+                            <!--生成OuterClass类-->
+                            <goal>compile</goal>
+                            <!--生成Grpc类-->
+                            <!--goal>compile-custom</goal-->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
