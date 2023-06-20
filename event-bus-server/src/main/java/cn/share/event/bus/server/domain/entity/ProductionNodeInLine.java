@@ -1,5 +1,8 @@
 package cn.share.event.bus.server.domain.entity;
 
+import cn.share.event.bus.server.domain.aggregate.ProductionNode;
+import cn.share.event.bus.server.domain.valueObj.ProductionNodeFlowChannelEnum;
+import cn.share.event.bus.server.domain.valueObj.ProductionNodeFlowTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +21,19 @@ import java.util.List;
 public class ProductionNodeInLine {
 
     /**
-     * 生产节点id
+     * 生产节点
      */
-    private Long productionNodeId;
+    private ProductionNode productionNode;
+
+    /**
+     * 生产节点流转类型，同步 or 异步
+     */
+    private ProductionNodeFlowTypeEnum flowType;
+
+    /**
+     * 生产节点流转通道，MQ、REST
+     */
+    private ProductionNodeFlowChannelEnum flowChannel;
 
     /**
      * 前一步节点
