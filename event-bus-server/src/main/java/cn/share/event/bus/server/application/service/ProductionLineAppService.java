@@ -1,5 +1,7 @@
 package cn.share.event.bus.server.application.service;
 
+import cn.share.event.bus.server.domain.valueObj.ProductionNodeOutput;
+
 /**
  * @author gonz
  * @version 1.0
@@ -21,4 +23,9 @@ public interface ProductionLineAppService {
      */
     void publishProductionLine();
 
+    /**
+     * 业务线流转
+     * @param output 前一个节点的输出
+     */
+    void flow(ProductionNodeOutput output);
 }
