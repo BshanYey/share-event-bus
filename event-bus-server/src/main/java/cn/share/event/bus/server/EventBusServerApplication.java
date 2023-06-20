@@ -1,4 +1,4 @@
-package com.share.event;
+package cn.share.event.bus.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
