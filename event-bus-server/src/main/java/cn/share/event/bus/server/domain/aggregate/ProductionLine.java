@@ -1,7 +1,10 @@
 package cn.share.event.bus.server.domain.aggregate;
 
+import cn.hutool.extra.spring.SpringUtil;
 import cn.share.event.bus.server.domain.entity.ProductionNodeInLine;
+import cn.share.event.bus.server.domain.gateway.ProductionLineGateway;
 import cn.share.event.bus.server.domain.valueObj.ProductionLineStatusEnum;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,6 +17,7 @@ import java.util.HashMap;
  * @date 2023/6/20 8:37
  */
 @Slf4j
+@Data
 @NoArgsConstructor
 public class ProductionLine {
 
@@ -54,9 +58,11 @@ public class ProductionLine {
      */
     public void create(){
         // todo
+        save();
     }
     /**
      * 发布一条生产线
+     *  先创建监听关系，然后再修改状态
      */
     public void publish(){
         // todo
@@ -67,6 +73,14 @@ public class ProductionLine {
     public void createAndPublish(){
         create();
         publish();
+    }
+
+    /**
+     * 存储当前生产线
+     */
+    private void save(){
+        ProductionLineGateway productionLineGateway = SpringUtil.getBean(ProductionLineGateway.class);
+        productionLineGateway.saveProductionLine(this);
     }
 
 }

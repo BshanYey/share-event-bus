@@ -1,5 +1,6 @@
 package cn.share.event.bus.server.infrastructure.config;
 
+import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +27,13 @@ public class ProducerSetConfig {
     public HashMap<Long, DefaultMQProducer> initProducers(){
         // todo 获取持久化信息, 根据持久化数据设置初始值
         HashMap<Long, DefaultMQProducer> res = new HashMap<>();
+
+        return res;
+    }
+    @Bean("consumerMaps")
+    public HashMap<Long, DefaultMQPushConsumer> initConsumer(){
+        // todo 获取持久化信息, 根据持久化数据设置初始值
+        HashMap<Long, DefaultMQPushConsumer> res = new HashMap<>();
 
         return res;
     }
