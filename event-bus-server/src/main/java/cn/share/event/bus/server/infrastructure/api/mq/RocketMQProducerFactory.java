@@ -24,7 +24,7 @@ public class RocketMQProducerFactory {
     private String address;
 
     @Resource(name = "producerMaps")
-    HashMap<Long, DefaultMQProducer> producerMaps;
+    HashMap<Long, DefaultMQProducer> producerMap;
 
     /**
      * 为一个生产线创建一个producer
@@ -41,7 +41,7 @@ public class RocketMQProducerFactory {
             producer.setNamesrvAddr(address);
             //启动实例
             producer.start();
-            producerMaps.put(productionLineId, producer);
+            producerMap.put(productionLineId, producer);
             return producer;
         } catch (Exception e) {
             log.error("MQ生产者创建失败，失败原因：{}", e.getMessage());
