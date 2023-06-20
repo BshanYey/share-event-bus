@@ -22,14 +22,19 @@ public class ProductionNode {
     private Long id;
 
     /**
-     * 节点编号
+     * 节点名称
      */
-    private String no;
+    private String name;
 
     /**
-     * 生产节点的状态
+     * 节点所属业务服务
      */
-    private ProductionNodeStatusEnum status;
+    private String serviceName;
+
+    /**
+     * 节点版本
+     */
+    private String version;
 
     /**
      * 节点描述
@@ -37,14 +42,9 @@ public class ProductionNode {
     private String description;
 
     /**
-     * 节点来源
+     * 生产节点的状态
      */
-    private String source;
-
-    /**
-     * 节点版本
-     */
-    private String version;
+    private ProductionNodeStatusEnum status;
 
     /**
      * 节点入口集合
@@ -55,8 +55,6 @@ public class ProductionNode {
      * 节点出口集合
      */
     private ProductionNodeOutput outputSet;
-
-
 
     /**
      * 注册一个生产节点

@@ -7,4 +7,8 @@ package cn.share.event.bus.server.domain.valueObj;
  * @date 2023/6/20 9:41
  */
 public class ProductionNodeInput {
+    /**
+     * 流转类型  MQ REST
+     */
+    private FlowType flowType;
 }
