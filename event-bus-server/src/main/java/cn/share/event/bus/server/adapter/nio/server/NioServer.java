@@ -1,12 +1,9 @@
 package cn.share.event.bus.server.adapter.nio.server;
 
-import cn.share.event.bus.server.global.utils.IpUtil;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
 import lombok.extern.slf4j.Slf4j;
-
-import java.net.Inet4Address;
-import java.net.SocketException;
 
 /**
  * @author dengencoding@gail.com
@@ -15,7 +12,7 @@ import java.net.SocketException;
  * @describe class responsibility
  */
 @Slf4j
-public class NioServer extends AbstractServer {
+public class NioServer extends AbstractServer<NioServerSocketChannel> {
     public NioServer() {
         super();
         super.boss = new NioEventLoopGroup(1);
@@ -35,17 +32,16 @@ public class NioServer extends AbstractServer {
 
             future.channel().closeFuture().sync();
         } catch (Throwable e) {
-            log.error("服务启动异常");
-            throw new RuntimeException(e);
+            log.error("服务启动异常", e);
+            throw new RuntimeException(e.getMessage());
         } finally {
             super.boss.shutdownGracefully();
             super.worker.shutdownGracefully();
         }
     }
 
-    private static String doGetLocalHost() throws SocketException {
-        return IpUtil.getLocalIp4Address()
-                .map(Inet4Address::getHostAddress)
-                .orElseThrow(() -> new RuntimeException("获取当前主机IP异常"));
+    @Override
+    public Class<NioServerSocketChannel> socketChannel() {
+        return NioServerSocketChannel.class;
     }
 }

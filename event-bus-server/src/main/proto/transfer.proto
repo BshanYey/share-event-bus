@@ -6,57 +6,56 @@ option java_multiple_files=false;
 option java_outer_classname="TransferProto";
 
 message Transfer {
-  string reqId = 1;
-  string reqTime = 2;
-  BusinessType businessType = 3;
+  string req_id = 1;
+  string req_time = 2;
+  BusinessType business_type = 3;
   Request request = 4;
   Response response = 5;
 }
 
 message Request {
-    RegisterRequest registerRequest = 1;
-    SyncPullRequest syncPullRequest = 2;
-    SyncPushRequest syncPushRequest = 3;
+    RegisterRequest register_request = 1;
+    SyncPullRequest sync_pull_request = 2;
+    SyncPushRequest sync_push_request = 3;
 }
 
 message SyncPushRequest {
-  string serviceName = 1;
-  string pushData = 2;
+  string service_name = 1;
+  string push_data = 2;
 }
 
 message SyncPullRequest {
-  string serviceName = 1;
+  string service_name = 1;
 }
 
 message Response {
-  string reqId = 1;
-  uint32 code = 2;
-  string message = 3;
-  string data = 4;
+  uint32 code = 1;
+  string message = 2;
+  string data = 3;
 }
 
 
 message RegisterRequest {
-  string serviceName= 1;
-  string funcName = 2;
+  string service_name= 1;
+  string func_name = 2;
   string version = 3;
   string desc = 4;
   // 注册信息
   repeated CommunicateInfo info = 5;
-  string inputData = 6;
-  FuncOutput outputData = 7;
+  string input_data = 6;
+  FuncOutput output_data = 7;
 }
 
 message FuncOutput {
-  fixed64 serviceId = 1;
-  fixed64 productLineId = 2;
-  fixed64 spanId = 3;
-  string responseData = 4;
+  fixed64 service_id = 1;
+  fixed64 product_line_id = 2;
+  fixed64 span_id = 3;
+  string response_data = 4;
 }
 
 message CommunicateInfo {
-  string communicateType = 1;
-  string communicateInfo = 2;
+  string communicate_type = 1;
+  string communicate_info = 2;
 }
 
 
@@ -76,4 +75,9 @@ enum BusinessType {
   SYNC_PULL_REQUEST = 4;
   // 数据拉取数据同步
   SYNC_PULL_RESPONSE = 5;
+
+  // 心跳请求
+  HEART_BEAT_REQUEST = 6;
+  // 心跳响应
+  HEART_BEAT_RESPONSE = 7;
 }

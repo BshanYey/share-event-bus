@@ -8,9 +8,12 @@
     <packaging>pom</packaging>
     <name>share-event-bus</name>
     <description>share-event-bus</description>
+
     <modules>
-        <module>boot-starter</module>
+        <module>event-bus-server</module>
+        <module>event-bus-client</module>
     </modules>
+
     <properties>
         <java.version>1.8</java.version>
         <spring-boot.version>2.7.12</spring-boot.version>

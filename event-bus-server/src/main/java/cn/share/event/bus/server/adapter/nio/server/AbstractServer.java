@@ -1,11 +1,15 @@
 package cn.share.event.bus.server.adapter.nio.server;
 
-import cn.share.event.bus.server.adapter.nio.handler.CustomerChannelHandler;
+import cn.share.event.bus.server.adapter.nio.handler.CustomerChannelInitializer;
+import cn.share.event.bus.server.global.utils.IpUtil;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.channel.socket.ServerSocketChannel;
+
+import java.net.Inet4Address;
+import java.net.SocketException;
 
 /**
  * @author dengencoding@gail.com
@@ -13,7 +17,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @date 2023-06-20 23:07:29
  * @describe class responsibility
  */
-public abstract class AbstractServer implements IServer {
+public abstract class AbstractServer<T extends ServerSocketChannel> implements IServer {
 
     protected static final Integer WORKER_POOL_SIZE = Runtime.getRuntime().availableProcessors() * 2;
 
@@ -30,7 +34,7 @@ public abstract class AbstractServer implements IServer {
 
     public void bootStrapConfig() {
         this.serverBootstrap.group(boss, worker)
-                .channel(NioServerSocketChannel.class)
+                .channel(this.socketChannel())
                 // 连接超时时间
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 15000)
                 // 全连接最大连接个数， 超过1024个，则直接拒绝客户端连接
@@ -41,6 +45,19 @@ public abstract class AbstractServer implements IServer {
                 // 是否启用心跳保活机制，即连接保活
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 // 自定义handler处理器
-                .childHandler(new CustomerChannelHandler());
+                .childHandler(new CustomerChannelInitializer());
+    }
+
+    /**
+     *  获取serverSocketChannel
+     *
+     * @return class
+     */
+    public abstract Class<T> socketChannel();
+
+    protected String doGetLocalHost() throws SocketException {
+        return IpUtil.getLocalIp4Address()
+                .map(Inet4Address::getHostAddress)
+                .orElseThrow(() -> new RuntimeException("获取当前主机IP异常"));
     }
 }

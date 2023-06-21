@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2023-06-20 23:35:56
  * @describe class responsibility
  */
-public class CustomerChannelHandler extends ChannelInitializer<SocketChannel> {
+public class CustomerChannelInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ch.pipeline().addLast(new IdleStateHandler(0, 0, 5, TimeUnit.SECONDS));
@@ -29,6 +29,17 @@ public class CustomerChannelHandler extends ChannelInitializer<SocketChannel> {
         ch.pipeline().addLast(new ProtobufVarint32LengthFieldPrepender());
         ch.pipeline().addLast(new ProtobufEncoder());
 
-        // todo 业务handler 处理逻辑
+        // 记录注册client请求
+        ch.pipeline().addLast(new ChannelRegisterHandler());
+        // 服务端心跳检测
+        ch.pipeline().addLast(new HeartBeatHandler());
+        // 注册节点请求
+        ch.pipeline().addLast(new RegisterNodeHandler());
+        // 同步拉取处理请求
+        ch.pipeline().addLast(new SyncPullDataHandler());
+        // 同步推送响应结果
+        ch.pipeline().addLast(new SyncPushResponseHandler());
+        // 默认后置处理器, 处理无效请求
+        ch.pipeline().addLast(new DefaultAfterPostHandler());
     }
 }
