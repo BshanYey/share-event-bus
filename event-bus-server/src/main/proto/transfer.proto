@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package proto;
+option java_package= "cn.share.event.bus.proto";
+option java_multiple_files=false;
+option java_outer_classname="TransferProto";
+
+message Transfer {
+  string reqId = 1;
+  string reqTime = 2;
+  BusinessType businessType = 3;
+  Request request = 4;
+  Response response = 5;
+}
+
+message Request {
+    RegisterRequest registerRequest = 1;
+    SyncPullRequest syncPullRequest = 2;
+    SyncPushRequest syncPushRequest = 3;
+}
+
+message SyncPushRequest {
+  string serviceName = 1;
+  string pushData = 2;
+}
+
+message SyncPullRequest {
+  string serviceName = 1;
+}
+
+message Response {
+  string reqId = 1;
+  uint32 code = 2;
+  string message = 3;
+  string data = 4;
+}
+
+
+message RegisterRequest {
+  string serviceName= 1;
+  string funcName = 2;
+  string version = 3;
+  string desc = 4;
+  // 注册信息
+  repeated CommunicateInfo info = 5;
+  string inputData = 6;
+  FuncOutput outputData = 7;
+}
+
+message FuncOutput {
+  fixed64 serviceId = 1;
+  fixed64 productLineId = 2;
+  fixed64 spanId = 3;
+  string responseData = 4;
+}
+
+message CommunicateInfo {
+  string communicateType = 1;
+  string communicateInfo = 2;
+}
+
+
+
+enum BusinessType {
+  // 注册请求
+  REGISTER_REQUEST = 0;
+  // 注册响应
+  REGISTER_RESPONSE = 1;
+
+  // 数据推送同步请求
+  SYNC_PUSH_REQUEST = 2;
+  // 数据推送同步响应
+  SYNC_PUSH_RESPONSE = 3;
+
+  // 数据拉取数据同步
+  SYNC_PULL_REQUEST = 4;
+  // 数据拉取数据同步
+  SYNC_PULL_RESPONSE = 5;
+}
