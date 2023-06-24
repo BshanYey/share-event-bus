@@ -12,13 +12,13 @@ import java.util.List;
 /**
  * @author gonz
  * @version 1.0
- * @description: 生产线上的生产节点
+ * @description: 生产过程上的节点
  * @date 2023/6/20 8:37
  */
 @Slf4j
 @Getter
 @Setter
-public class ProductionNodeInLine {
+public class ProductionProcessNode {
 
     /**
      * 生产节点
@@ -38,12 +38,12 @@ public class ProductionNodeInLine {
     /**
      * 前一步节点
      */
-    List<ProductionNodeInLine> preNodes;
+    List<ProductionProcessNode> preNodes;
 
     /**
      * 下一步的节点
      */
-    List<ProductionNodeInLine> nextNodes;
+    List<ProductionProcessNode> nextNodes;
 
     /**
      * 该节点是否通过，节点出口输出一次记为 TRUE，否则为 FALSE
@@ -54,5 +54,9 @@ public class ProductionNodeInLine {
      * 节点通过次数
      */
     public Integer passCount;
+
+    public void flow(){
+        // todo
+    }
 
 }

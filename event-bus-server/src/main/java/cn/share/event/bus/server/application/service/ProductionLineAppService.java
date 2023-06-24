@@ -1,6 +1,6 @@
 package cn.share.event.bus.server.application.service;
 
-import cn.share.event.bus.server.domain.valueObj.ProductionNodeOutput;
+import cn.share.event.bus.server.application.dto.ProductionLineDto;
 
 /**
  * @author gonz
@@ -10,22 +10,27 @@ import cn.share.event.bus.server.domain.valueObj.ProductionNodeOutput;
  */
 public interface ProductionLineAppService {
 
-    /**
-     * 查询生产线
-     */
-    void showProductionLine();
+//    /**
+//     * 查询生产线
+//     */
+//    void showAllProductionLine();
     /**
      * 创建生产线
      */
-    void createProductionLine();
+    void createProductionLine(ProductionLineDto productionLineDto);
+
+    /**
+     * 升级生产线
+     */
+    void upLevelProductionLine(ProductionLineDto productionLineDto);
+
     /**
      * 发布生产线
      */
     void publishProductionLine();
 
     /**
-     * 业务线流转
-     * @param output 前一个节点的输出
+     * 创建一个生产过程
      */
-    void flow(ProductionNodeOutput output);
+    void createProductionProcess();
 }

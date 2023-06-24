@@ -1,8 +1,12 @@
 package cn.share.event.bus.server.domain.aggregate;
 
+import cn.hutool.extra.spring.SpringUtil;
+import cn.share.event.bus.server.domain.gateway.ProductionNodeGateway;
 import cn.share.event.bus.server.domain.valueObj.ProductionNodeInput;
 import cn.share.event.bus.server.domain.valueObj.ProductionNodeOutput;
 import cn.share.event.bus.server.domain.valueObj.ProductionNodeStatusEnum;
+import com.google.gson.Gson;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,7 +17,8 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2023/6/20 8:37
  */
 @Slf4j
-@NoArgsConstructor
+@Getter
+//@NoArgsConstructor
 public class ProductionNode {
 
     /**
@@ -56,11 +61,25 @@ public class ProductionNode {
      */
     private ProductionNodeOutput outputSet;
 
+    public ProductionNode(String name, String serviceName, String version, String description, ProductionNodeInput inputSet, ProductionNodeOutput outputSet) {
+        this.name = name;
+        this.serviceName = serviceName;
+        this.version = version;
+        this.description = description;
+        this.status = ProductionNodeStatusEnum.ON_LINE;
+        this.inputSet = inputSet;
+        this.outputSet = outputSet;
+    }
+
     /**
      * 注册一个生产节点
      */
-    public void register(){
-        // todo
+    public void register() throws Exception {
+        if(!ProductionNodeStatusEnum.ON_LINE.equals(status)){
+            log.info("当前生产节点未处于在线状态不能注册，信息：{}", new Gson().toJson(this));
+            throw new Exception("当前生产节点未处于在线状态不能注册");
+        }
+        save();
     }
 
     /**
@@ -68,7 +87,7 @@ public class ProductionNode {
      */
     public void onLine(){
         this.status = ProductionNodeStatusEnum.ON_LINE;
-        save();
+        update();
     }
 
     /**
@@ -76,14 +95,23 @@ public class ProductionNode {
      */
     public void offLine(){
         this.status = ProductionNodeStatusEnum.OFF_LINE;
-        save();
+        update();
     }
 
     /**
      * 保存当前节点
      */
     private void save(){
-        // todo
+        ProductionNodeGateway nodeGateway = SpringUtil.getBean(ProductionNodeGateway.class);
+        this.id = nodeGateway.save(this);
+    }
+
+    /**
+     * 更新当前节点
+     */
+    private void update(){
+        ProductionNodeGateway nodeGateway = SpringUtil.getBean(ProductionNodeGateway.class);
+        nodeGateway.updateById(this);
     }
 
 }
