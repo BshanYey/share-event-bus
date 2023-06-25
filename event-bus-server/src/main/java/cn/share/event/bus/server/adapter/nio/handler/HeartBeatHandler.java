@@ -22,6 +22,18 @@ public class HeartBeatHandler extends BaseHandler<TransferProto.Transfer> {
     private static final Integer HEART_BEAT_FAILED_THRESHOLD = 3;
 
     @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        log.info("Client: {} register success.", ctx.channel().remoteAddress());
+        ChannelGroups.register(ctx.channel());
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        log.info("Client {} unregister.", ctx.channel().remoteAddress());
+        ChannelGroups.discard(ctx.channel());
+    }
+
+    @Override
     protected void channelRead0(ChannelHandlerContext ctx, TransferProto.Transfer transfer) throws Exception {
         if (isCurrentNode(TransferProto.BusinessType.HEART_BEAT_REQUEST, transfer)) {
             SocketAddress socketAddress = ctx.channel().remoteAddress();

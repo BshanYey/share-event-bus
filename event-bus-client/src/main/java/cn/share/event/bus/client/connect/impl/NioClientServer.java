@@ -4,6 +4,7 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author yangjie.deng@resico.cn
@@ -19,7 +20,10 @@ public class NioClientServer extends AbstractClient<NioSocketChannel> {
     }
 
     @Override
-    public void connect(Integer port, String serverHost) {
+    public void connect(Integer port, String serverHost) throws Exception {
+        if (StringUtils.isBlank(serverHost)) {
+            throw new IllegalAccessException("event.bus.server.address 不允许为空.");
+        }
         super.configBootStrap();
         try {
             ChannelFuture channelFuture = super.bootstrap.connect(serverHost, port).sync();

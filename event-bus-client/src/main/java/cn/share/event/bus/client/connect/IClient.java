@@ -17,7 +17,7 @@ public interface IClient {
      * @param port 服务端口
      * @param serverHost 服务地址
      */
-    void connect(Integer port, String serverHost);
+    void connect(Integer port, String serverHost) throws Exception;
 
     String DEFAULT_IO_MODEL = "nio";
 

@@ -29,8 +29,6 @@ public class CustomerChannelInitializer extends ChannelInitializer<SocketChannel
         ch.pipeline().addLast(new ProtobufVarint32LengthFieldPrepender());
         ch.pipeline().addLast(new ProtobufEncoder());
 
-        // 记录注册client请求
-        ch.pipeline().addLast(new ChannelRegisterHandler());
         // 服务端心跳检测
         ch.pipeline().addLast(new HeartBeatHandler());
         // 注册节点请求
