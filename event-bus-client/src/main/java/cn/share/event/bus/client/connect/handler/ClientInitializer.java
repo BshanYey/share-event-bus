@@ -29,5 +29,14 @@ public class ClientInitializer extends ChannelInitializer<SocketChannel> {
         // 请求加密
         ch.pipeline().addLast(new ProtobufVarint32LengthFieldPrepender());
         ch.pipeline().addLast(new ProtobufEncoder());
+
+        // 处理心跳请求
+        ch.pipeline().addLast(new HeartBeatHandler());
+        // 处理注册结果
+        ch.pipeline().addLast(new RegisterRespHandler());
+        // 处理拉取结果
+        ch.pipeline().addLast(new SyncPullRespHandler());
+        // 处理推送结果
+        ch.pipeline().addLast(new SyncPushReqHandler());
     }
 }

@@ -41,6 +41,20 @@ public @interface EventRegister {
     String desc();
 
     /**
+     *   请求参数类型
+     *
+     * @return Class
+     */
+    Class<?> requestType() default Object.class;
+
+    /**
+     *  想要参数类型
+     *
+     * @return Class
+     */
+    Class<?> responseType();
+
+    /**
      *  注册类型
      *
      * @return 默认为REST

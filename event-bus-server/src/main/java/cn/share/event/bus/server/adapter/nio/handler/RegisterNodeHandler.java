@@ -2,6 +2,7 @@ package cn.share.event.bus.server.adapter.nio.handler;
 
 import cn.hutool.extra.spring.SpringUtil;
 import cn.share.event.bus.proto.TransferProto;
+import cn.share.event.bus.server.application.dto.ProductNodeDto;
 import cn.share.event.bus.server.application.service.ProductionNodeAppService;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -23,7 +24,7 @@ public class RegisterNodeHandler extends BaseHandler<TransferProto.Transfer> {
             // todo 日志记录
             ProductionNodeAppService appService = SpringUtil.getBean(ProductionNodeAppService.class);
             // todo 注册信息
-            appService.register();
+            appService.register(new ProductNodeDto());
         } else {
             super.channelRead(ctx, msg);
         }

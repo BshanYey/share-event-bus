@@ -18,6 +18,11 @@ public interface IServer {
      */
     void start(Integer port);
 
+    /**
+     *  停止提供监听
+     */
+    void stop();
+
     @Slf4j
     class Factory {
 
@@ -38,7 +43,7 @@ public interface IServer {
             } else if (StringUtils.equalsIgnoreCase(DEFAULT_EPOLL_MODEL, ioModel)) {
                 return new EpollServer();
             }
-            return null;
+            return new NioServer();
         }
     }
 }

@@ -48,6 +48,13 @@ public abstract class AbstractServer<T extends ServerSocketChannel> implements I
                 .childHandler(new CustomerChannelInitializer());
     }
 
+
+    @Override
+    public void stop() {
+        this.boss.shutdownGracefully();
+        this.worker.shutdownGracefully();
+    }
+
     /**
      *  获取serverSocketChannel
      *

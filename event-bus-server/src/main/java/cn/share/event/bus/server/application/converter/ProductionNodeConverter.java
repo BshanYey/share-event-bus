@@ -4,6 +4,7 @@ import cn.share.event.bus.server.application.dto.ProductionNodeFlowDto;
 import cn.share.event.bus.server.domain.valueObj.ProductionNodeOutput;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
+import org.mapstruct.factory.Mappers;
 
 /**
  * @author gonz
@@ -12,9 +13,11 @@ import org.mapstruct.ReportingPolicy;
  * @date 2023/6/23 20:06
  */
 @Mapper(
-        componentModel = "spring",
+//        componentModel = "spring",
         unmappedTargetPolicy = ReportingPolicy.IGNORE
 )
 public interface ProductionNodeConverter {
+    ProductionNodeConverter INSTANCE = Mappers.getMapper(ProductionNodeConverter.class);
+
     ProductionNodeOutput flowDto2Pnil(ProductionNodeFlowDto nodeFlow);
 }

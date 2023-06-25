@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ProductionProcessAppServiceImpl implements ProductionProcessAppService {
 
-    private final ProductionNodeConverter productionNodeConverter;
     private final ProductionDomainService plDomainService;
 
     /**
@@ -35,7 +34,7 @@ public class ProductionProcessAppServiceImpl implements ProductionProcessAppServ
     @Override
     public void processFlow(ProductionNodeFlowDto nodeFlow) {
         log.info("节点流转开始，输入：{}", new Gson().toJson(nodeFlow));
-        ProductionNodeOutput thisNodeOut = productionNodeConverter.flowDto2Pnil(nodeFlow);
+        ProductionNodeOutput thisNodeOut = ProductionNodeConverter.INSTANCE.flowDto2Pnil(nodeFlow);
         if(!thisNodeOut.isEffective()){
             // 非健康的可流转的节点输出
             log.info("当前节点输出为非健康的可流转的节点输出，信息：{}", new Gson().toJson(thisNodeOut));
