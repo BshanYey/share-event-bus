@@ -21,4 +21,11 @@ public interface ProductionLineGateway {
      * @param productionLineId 生产线id
      */
     ProductionLine getById(Long productionLineId);
+
+    /**
+     * updateById
+     * @param productionLineMeta 生产线元信息
+     */
+    void updateById(ProductionLine productionLineMeta);
+
 }

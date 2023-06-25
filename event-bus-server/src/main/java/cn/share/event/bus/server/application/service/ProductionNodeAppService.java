@@ -1,5 +1,6 @@
 package cn.share.event.bus.server.application.service;
 
+import cn.share.event.bus.server.application.dto.ProductNodeDto;
 import cn.share.event.bus.server.domain.aggregate.ProductionNode;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface ProductionNodeAppService {
     /**
      * 注册一个生产节点
      */
-    void register();
+    void register(ProductNodeDto productNodeDto);
 
     /**
      * 获取生产节点

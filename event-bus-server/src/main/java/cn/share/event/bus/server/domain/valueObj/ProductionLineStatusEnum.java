@@ -19,7 +19,8 @@ public enum ProductionLineStatusEnum {
     CREATED("已创建", 1),
     PUBLISHED("已发布", 2),
     OFF_LINE_ING("下线中", 3),
-    OFF_LINE("已下线", 4)
+    OFF_LINE("已下线", 4),
+    DELETED("已删除", 5)
     ;
 
     private final String name;

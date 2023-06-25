@@ -30,6 +30,11 @@ public class PLByMemoryGatewayImpl implements ProductionLineGateway {
         return productionLineSet.get(productionLineId);
     }
 
+    @Override
+    public void updateById(ProductionLine productionLineMeta) {
+
+    }
+
     /**
      * 存储
      * @param productionLine 生产线
