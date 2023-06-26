@@ -1,5 +1,7 @@
 server:
   port: 8080
+  servlet:
+    context-path:
 
 
 mq:
@@ -16,3 +18,4 @@ logging:
 spring:
   profiles:
     active: dev
+

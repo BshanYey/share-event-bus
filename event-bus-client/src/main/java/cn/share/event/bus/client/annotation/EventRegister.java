@@ -1,8 +1,13 @@
 package cn.share.event.bus.client.annotation;
 
+import cn.share.event.bus.client.entity.None;
 import cn.share.event.bus.client.enums.RegisterType;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * @author yangjie.deng@resico.cn
@@ -19,6 +24,13 @@ public @interface EventRegister {
      * @return 功能名称
      */
     String funcName();
+
+    /**
+     *  MQ 注册时使用
+     *
+     * @return 主题
+     */
+    String topic() default "";
 
     /**
      *  功能节点注册版本号
@@ -39,14 +51,14 @@ public @interface EventRegister {
      *
      * @return Class
      */
-    Class<?> requestType() default Object.class;
+    Class<?> requestType() default None.class;
 
     /**
      *  想要参数类型
      *
      * @return Class
      */
-    Class<?> responseType();
+    Class<?> responseType() default None.class;
 
     /**
      *  注册类型
