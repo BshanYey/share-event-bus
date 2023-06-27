@@ -1,4 +1,4 @@
-package cn.share.event.bus.client.entity;
+package cn.share.event.bus.client.entity.param;
 
 import lombok.Data;
 
@@ -9,8 +9,9 @@ import lombok.Data;
  */
 @Data
 public class Param {
-    private String param;
+    private String paramName;
     private String paramType;
+    private String paramValue;
     private Integer paramOrder;
     private Boolean javaClass;
 }

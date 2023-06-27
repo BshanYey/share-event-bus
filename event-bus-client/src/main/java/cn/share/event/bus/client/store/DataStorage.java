@@ -1,6 +1,6 @@
 package cn.share.event.bus.client.store;
 
-import cn.share.event.bus.client.entity.Node;
+import cn.share.event.bus.client.entity.param.Node;
 
 import java.util.ArrayList;
 import java.util.List;

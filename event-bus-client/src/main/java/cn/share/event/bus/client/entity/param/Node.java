@@ -1,8 +1,6 @@
-package cn.share.event.bus.client.entity;
+package cn.share.event.bus.client.entity.param;
 
 import lombok.Data;
-
-import java.util.Map;
 
 /**
  * @author yangjie.deng@resico.cn
@@ -19,9 +17,9 @@ public class Node {
 
     private String desc;
 
-    private Map<String, Object> input;
+    private String input;
 
-    private Map<String, Object> output;
+    private String output;
 
     private boolean whetherNormal;
 }

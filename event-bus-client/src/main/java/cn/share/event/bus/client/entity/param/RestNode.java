@@ -1,4 +1,4 @@
-package cn.share.event.bus.client.entity;
+package cn.share.event.bus.client.entity.param;
 
 import lombok.Data;
 

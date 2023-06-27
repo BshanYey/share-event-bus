@@ -1,6 +1,6 @@
 package cn.share.event.bus.client.annotation;
 
-import cn.share.event.bus.client.entity.None;
+import cn.share.event.bus.client.entity.param.None;
 import cn.share.event.bus.client.enums.RegisterType;
 
 import java.lang.annotation.Documented;
