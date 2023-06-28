@@ -11,5 +11,9 @@ import lombok.Data;
 public class GenericParam {
     private String key;
 
+    private Boolean isJavaClass;
+
+    private Boolean isKey;
+
     private String value;
 }
