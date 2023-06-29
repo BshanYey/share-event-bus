@@ -1,4 +1,4 @@
-package cn.share.event.bus.client.store;
+package cn.share.event.bus.client.register.store;
 
 import cn.share.event.bus.client.entity.param.Node;
 

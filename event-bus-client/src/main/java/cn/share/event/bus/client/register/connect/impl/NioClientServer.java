@@ -1,4 +1,4 @@
-package cn.share.event.bus.client.connect.impl;
+package cn.share.event.bus.client.register.connect.impl;
 
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -28,7 +28,8 @@ public class NioClientServer extends AbstractClient<NioSocketChannel> {
         try {
             ChannelFuture channelFuture = super.bootstrap.connect(serverHost, port).sync();
             log.info("Event bus client connect, host:{} port:{} success.", serverHost, port);
-
+            // 发布事件
+            super.applicationContext.publishEvent(null);
             channelFuture.channel().closeFuture().sync();
         } catch (Exception e) {
             log.error(e.getMessage(), e);

@@ -1,4 +1,4 @@
-package cn.share.event.bus.client.register;
+package cn.share.event.bus.client.register.nodeparse;
 
 import cn.share.event.bus.client.enums.RegisterType;
 

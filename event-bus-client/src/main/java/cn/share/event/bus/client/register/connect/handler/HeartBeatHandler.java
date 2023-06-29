@@ -1,6 +1,6 @@
-package cn.share.event.bus.client.connect.handler;
+package cn.share.event.bus.client.register.connect.handler;
 
-import cn.share.event.bus.client.connect.manager.ClientTemplate;
+import cn.share.event.bus.client.register.connect.manager.ClientTemplate;
 import cn.share.event.bus.client.proto.TransferProto;
 import com.alibaba.fastjson2.JSON;
 import io.netty.channel.ChannelHandler;

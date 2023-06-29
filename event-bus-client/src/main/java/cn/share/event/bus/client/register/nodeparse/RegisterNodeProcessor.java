@@ -1,4 +1,4 @@
-package cn.share.event.bus.client.register;
+package cn.share.event.bus.client.register.nodeparse;
 
 import cn.share.event.bus.client.annotation.EventRegister;
 import cn.share.event.bus.client.entity.param.Node;
@@ -6,9 +6,8 @@ import cn.share.event.bus.client.entity.parser.EventParseNode;
 import cn.share.event.bus.client.entity.parser.ParseNode;
 import cn.share.event.bus.client.entity.parser.RestParseNode;
 import cn.share.event.bus.client.enums.RegisterType;
-import cn.share.event.bus.client.store.DataStorage;
+import cn.share.event.bus.client.register.store.DataStorage;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -38,7 +37,7 @@ public class RegisterNodeProcessor implements InitializingBean {
     private String contentPath;
 
 
-    private final AtomicInteger registerCount = new AtomicInteger(0);
+    private static final AtomicInteger registerCount = new AtomicInteger(0);
 
     private final BlockingQueue<Object> registerQueue = new ArrayBlockingQueue<>(1024);
 
@@ -48,7 +47,7 @@ public class RegisterNodeProcessor implements InitializingBean {
         registerQueue.offer(obj);
     }
 
-    public int alreadyRegisterCount() {
+    public static int alreadyRegisterCount() {
         return registerCount.get();
     }
 

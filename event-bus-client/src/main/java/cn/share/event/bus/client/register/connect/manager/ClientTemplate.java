@@ -1,4 +1,4 @@
-package cn.share.event.bus.client.connect.manager;
+package cn.share.event.bus.client.register.connect.manager;
 
 import cn.share.event.bus.client.proto.TransferProto;
 import io.netty.channel.Channel;

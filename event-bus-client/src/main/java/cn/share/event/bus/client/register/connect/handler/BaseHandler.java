@@ -1,4 +1,4 @@
-package cn.share.event.bus.client.connect.handler;
+package cn.share.event.bus.client.register.connect.handler;
 
 
 import cn.share.event.bus.client.proto.TransferProto;

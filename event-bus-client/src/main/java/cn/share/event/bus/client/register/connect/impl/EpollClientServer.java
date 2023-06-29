@@ -1,4 +1,4 @@
-package cn.share.event.bus.client.connect.impl;
+package cn.share.event.bus.client.register.connect.impl;
 
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollSocketChannel;

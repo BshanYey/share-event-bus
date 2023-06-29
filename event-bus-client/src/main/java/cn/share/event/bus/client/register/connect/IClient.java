@@ -1,7 +1,7 @@
-package cn.share.event.bus.client.connect;
+package cn.share.event.bus.client.register.connect;
 
-import cn.share.event.bus.client.connect.impl.EpollClientServer;
-import cn.share.event.bus.client.connect.impl.NioClientServer;
+import cn.share.event.bus.client.register.connect.impl.EpollClientServer;
+import cn.share.event.bus.client.register.connect.impl.NioClientServer;
 import org.apache.commons.lang3.StringUtils;
 
 /**

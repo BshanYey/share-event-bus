@@ -1,4 +1,4 @@
-package cn.share.event.bus.client.connect;
+package cn.share.event.bus.client.register.connect;
 
 import cn.share.event.bus.client.config.EvenBusProperties;
 import lombok.extern.slf4j.Slf4j;

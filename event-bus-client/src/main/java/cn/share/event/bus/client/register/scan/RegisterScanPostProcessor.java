@@ -1,7 +1,7 @@
-package cn.share.event.bus.client.scan;
+package cn.share.event.bus.client.register.scan;
 
 import cn.share.event.bus.client.annotation.Register;
-import cn.share.event.bus.client.register.RegisterNodeProcessor;
+import cn.share.event.bus.client.register.nodeparse.RegisterNodeProcessor;
 import javax.annotation.Resource;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @describe class responsibility
  */
 @Component
-public class RegisterPostProcessor implements BeanPostProcessor {
+public class RegisterScanPostProcessor implements BeanPostProcessor {
 
     @Resource
     RegisterNodeProcessor nodeProcessor;
